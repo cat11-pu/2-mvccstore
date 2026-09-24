@@ -1,0 +1,16 @@
+{
+  "initial": {"a": "v0", "b": "w0"},
+  "report_keys": ["a", "b"],
+  "steps": [
+    {"op": "begin", "id": "r1"},
+    {"op": "read", "id": "r1", "key": "a"},
+    {"op": "write", "key": "a", "value": "v1", "snapshot": "r1"},
+    {"op": "begin", "id": "r2"},
+    {"op": "write", "key": "a", "value": "v2", "snapshot": "r1"},
+    {"op": "write", "key": "b", "value": "w1", "snapshot": "r2"},
+    {"op": "begin", "id": "r3"},
+    {"op": "read", "id": "r3", "key": "a"},
+    {"op": "read", "id": "r3", "key": "b"}
+  ],
+  "active": ["r2", "r3"]
+}
